@@ -19,7 +19,7 @@
                             <button onclick="window.location.href='{{ route('posts.index') }}'"
                                 class="btn btn-primary">Archivio
                                 Post</button>
-                            <button onclick="window.location.href='{{ route('posts.show', $post->id) }}'"
+                            <button onclick="window.location.href='{{ route('posts.create') }}'"
                                 class="btn btn-primary">Nuovo
                                 Post</button>
                         </div>
