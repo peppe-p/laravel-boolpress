@@ -18,7 +18,7 @@
                         <th scope="row">{{ $post->id }}</th>
                         <td>{{ $post->body }}</td>
                         <td>{{ $post->author }}</td>
-                        <td>{{ $post->img }}</td>
+                        <td><img class="img_pre" src="{{ $post->img }}" alt="Post of blog"></td>
                         <td>{{ $post->note }}</td>
                     </tr>
                 @endforeach
