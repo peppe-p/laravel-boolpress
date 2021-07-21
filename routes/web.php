@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PageController@index')->name('index');
+Route::resource('posts', 'PostController');
 
 Auth::routes();
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function () {
