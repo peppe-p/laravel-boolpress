@@ -15,10 +15,11 @@ class PostSeeder extends Seeder
     {
         for ($i = 0; $i < 4; $i++) {
             $n = new Post;
+            $n->title = $faker->catchPhrase();
             $n->author = $faker->name();
-            $n->body = $faker->paragraph();
-            $n->img = $faker->imageUrl(640, 480, 'blog', true);
-            $n->note = $faker->paragraph();
+            $n->body = $faker->realText($maxNbChars = 300, $indexSize = 3);
+            $n->img = $faker->imageUrl(640, 380, 'Random Placeholder Image', true);
+            $n->note = $faker->realText($maxNbChars = 200, $indexSize = 3);
             $n->save();
         }
     }

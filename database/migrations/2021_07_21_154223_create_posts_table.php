@@ -17,8 +17,8 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->string('body');
-            $table->string('img')->default('https://wallpaperset.com/w/full/4/0/f/437241.jpg');
+            $table->string('body', 500);
+            $table->string('img');
             $table->string('note')->nullable();
             $table->timestamps();
         });

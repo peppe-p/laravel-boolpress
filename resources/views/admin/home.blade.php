@@ -16,12 +16,10 @@
 
                         <h5>Benvenuto nel pannello di amministrazione.</h5>
                         <div class="btn-group-vertical">
-                            <button onclick="window.location.href='{{ route('posts.index') }}'"
-                                class="btn btn-primary">Archivio
-                                Post</button>
-                            <button onclick="window.location.href='{{ route('posts.create') }}'"
-                                class="btn btn-primary">Nuovo
-                                Post</button>
+                            <a href="{{ route('posts.index') }}" class="btn btn-primary" role="button"
+                                aria-pressed="true">Archivio Post</a>
+                            <a href="{{ route('posts.create') }}" class="btn btn-primary" role="button"
+                                aria-pressed="true">Nuovo Post</a>
                         </div>
                     </div>
                 </div>
