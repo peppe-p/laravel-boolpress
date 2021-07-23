@@ -15,6 +15,7 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('author');
             $table->string('body');
             $table->string('img')->default('https://wallpaperset.com/w/full/4/0/f/437241.jpg');
