@@ -42,7 +42,7 @@ class PostController extends Controller
             'title' => 'required | max:255',
             'author' => 'required | max:255',
             'body' => 'required | max:500',
-            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP',
+            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | size:1050',
             'note' => 'max:255'
         ]);
 

@@ -2,12 +2,14 @@
 
 @section('content')
     <div class="container">
-        @include('error')
 
-        <a href="{{ route('posts.index') }}" class="btn btn-primary" role="button" aria-pressed="true"><i
-                class="fa fa-chevron-left" aria-hidden="true"></i> Indietro</a>
+        <div class="actions_bar">
+            <a href="{{ route('posts.index') }}" class="btn btn-primary" role="button" aria-pressed="true"><i
+                    class="fa fa-chevron-left" aria-hidden="true"></i> Indietro</a>
+        </div>
         <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
             @csrf
+            @include('error')
 
             <div class="form-group">
                 <label for="title">Titolo</label>
