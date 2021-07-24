@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -37,7 +38,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required | max:255',
+            'author' => 'required | max:255',
+            'body' => 'required | max:500',
+            'img' => 'image | file | size: 1050',
+            'note' => 'max:255'
+        ]);
+        $cover_post = Storage::disk('public')->put('posts/cover', $request->img);
+        $validatedData['img'] = $cover_post;
+
+        $post = Post::create($validatedData);
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
@@ -82,6 +94,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        Post::destroy($post->id);
+        return redirect()->route('posts.index');
     }
 }

@@ -16,9 +16,9 @@
 
                         <h5>Benvenuto nel pannello di amministrazione.</h5>
                         <div class="btn-group-vertical">
-                            <a href="{{ route('admin.posts.index') }}" class="btn btn-primary" role="button"
+                            <a href="{{ route('posts.index') }}" class="btn btn-primary" role="button"
                                 aria-pressed="true">Archivio Post</a>
-                            <a href="{{ route('admin.posts.create') }}" class="btn btn-primary" role="button"
+                            <a href="{{ route('posts.create') }}" class="btn btn-primary" role="button"
                                 aria-pressed="true">Nuovo Post</a>
                         </div>
                     </div>

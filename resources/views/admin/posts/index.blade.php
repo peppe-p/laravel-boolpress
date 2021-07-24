@@ -34,10 +34,10 @@
                                     aria-pressed="true">Visualizza</a>
                                 <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-light" role="button"
                                     aria-pressed="true">Modifica</a>
-                                <a href="" class="btn btn-danger" role="button" aria-pressed="true" data-toggle="modal"
-                                    data-target="#deleteModal">Elimina</a>
+                                <a role="button" class="btn btn-danger" data-toggle="modal"
+                                    data-target="#deleteModalID{{ $post->id }}">Elimina</a>
                                 <!-- Modal -->
-                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+                                <div class="modal fade" id="deleteModalID{{ $post->id }}" tabindex="-1" role="dialog"
                                     aria-labelledby="modelTitleId" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
@@ -57,13 +57,17 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"
                                                     data-dismiss="modal">Annulla</button>
-                                                <a href="{{ route('posts.destroy', $post->id) }}" class="btn btn-danger"
-                                                    role="button" aria-pressed="true" data-toggle="modal"
-                                                    data-target="#deleteModal">Elimina</a>
+                                                <form action="{{ route('posts.destroy', $post->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger">Elimina</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+
+
                             </div>
                         </td>
                     </tr>
