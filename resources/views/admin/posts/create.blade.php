@@ -14,13 +14,14 @@
             <div class="form-group">
                 <label for="title">Titolo</label>
                 <input type="text" name="title" id="title" class="form-control" placeholder="Inserisci il titolo"
-                    aria-describedby="titleHelp" maxlength="255" required>
+                    aria-describedby="titleHelp" maxlength="255" required value="{{ old('title') }}">
                 <small id="titleHelp" class="text-muted">Lunghezza massima: 255 caratteri</small>
             </div>
 
             <div class="form-group">
                 <label for="body">Contenuto</label>
-                <textarea class="form-control" name="body" id="body" rows="5" maxlength="500" required></textarea>
+                <textarea class="form-control" name="body" id="body" rows="5" maxlength="500"
+                    required>{{ old('title') }}</textarea>
                 <small id="titleHelp" class="text-muted">Lunghezza massima: 500 caratteri</small>
             </div>
 
@@ -34,14 +35,14 @@
             <div class="form-group">
                 <label for="note">Note</label>
                 <textarea class="form-control" name="note" id="note" rows="2" placeholder="Inserisci note aggiuntive"
-                    maxlength="255"></textarea>
+                    maxlength="255">{{ old('title') }}</textarea>
                 <small id="NoteHelp" class="form-text text-muted">Lunghezza massima: 255 caratteri</small>
             </div>
 
             <div class="form-group">
                 <label for="author">Autore</label>
                 <input type="text" class="form-control" name="author" id="author" aria-describedby="AuthorHelp"
-                    placeholder="{{ Auth::user()->name }}" maxlength="255" required>
+                    maxlength="255" required value="{{ Auth::user()->name }}{{ old('title') }}">
                 <small id="AuthorHelp" class="form-text text-muted">Inserisci la firma del post</small>
             </div>
 
