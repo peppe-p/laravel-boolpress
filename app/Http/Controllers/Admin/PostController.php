@@ -42,7 +42,7 @@ class PostController extends Controller
             'title' => 'required | max:255',
             'author' => 'required | max:255',
             'body' => 'required | max:500',
-            'img' => 'image | max: 1050',
+            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP',
             'note' => 'max:255'
         ]);
 
@@ -95,6 +95,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        /* ELimina le immagini di copertina conservate nel server */
+        Storage::disk('public')->delete($post->img);
+        /* ################### */
         Post::destroy($post->id);
         return redirect()->route('posts.index');
     }

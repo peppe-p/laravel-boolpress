@@ -26,7 +26,7 @@
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->body }}</td>
                         <td>{{ $post->author }}</td>
-                        <td><img class="img_pre" src="{{ $post->img }}" alt="Post of blog"></td>
+                        <td><img class="img_pre" src="{{ asset('storage/' . $post->img) }}" alt="Post of blog"></td>
                         <td>{{ $post->note }}</td>
                         <td>
                             <div class="btn-group-vertical">

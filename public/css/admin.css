@@ -10943,7 +10943,10 @@ a.text-dark:focus {
 }
 
 .img_pre {
-  height: 150px;
+  height: 80px;
+  width: 180px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .actions_bar {
