@@ -42,11 +42,12 @@ class PostController extends Controller
             'title' => 'required | max:255',
             'author' => 'required | max:255',
             'body' => 'required | max:500',
-            'img' => 'image | file | size: 1050',
+            'img' => 'image | max: 1050',
             'note' => 'max:255'
         ]);
-        $cover_post = Storage::disk('public')->put('posts/cover', $request->img);
-        $validatedData['img'] = $cover_post;
+
+        $cover_img = Storage::disk('public')->put('posts/cover', $request->img);
+        $validatedData['img'] = $cover_img;
 
         $post = Post::create($validatedData);
         return redirect()->route('posts.show', $post->id);

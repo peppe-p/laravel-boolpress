@@ -7,7 +7,7 @@
             <h6>Post N.{{ $id }}</h6>
             <hr>
             <h5>Scritto da {{ $author }}</h5>
-            <img src="{{ $img }}" alt="" class="view_img_post">
+            <img src="{{ asset('storage/' . $img) }}" alt="" class="view_img_post">
             <p>{{ $body }}</p>
             <hr>
             <p>Note aggiuntive:

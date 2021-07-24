@@ -23,9 +23,9 @@
             </div>
 
             <div class="form-group">
-                <label for="cover_img">Immagine di copertina</label>
-                <input type="file" class="form-control-file" name="cover_img" id="cover_img"
-                    placeholder="Carica la copertina del post" aria-describedby="CoverHelp">
+                <label for="img">Immagine di copertina</label>
+                <input type="file" class="form-control-file" name="img" id="img" placeholder="Carica la copertina del post"
+                    aria-describedby="CoverHelp">
                 <small id="CoverHelp" class="form-text text-muted">Max. 1 MB</small>
             </div>
 
