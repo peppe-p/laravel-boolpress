@@ -9,6 +9,7 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="{{ asset('js/admin.js') }}" defer></script>
 </head>
 
@@ -53,8 +54,8 @@
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('home') }}">Profilo</a>
                                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="
-                                                    event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">Logout</a>
+                                                        event.preventDefault();
+                                                        document.getElementById('logout-form').submit();">Logout</a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf

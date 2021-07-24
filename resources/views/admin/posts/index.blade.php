@@ -2,6 +2,11 @@
 
 @section('content')
     <div class="container">
+        <div class="actions_bar">
+            <a href="{{ route('posts.create') }}" class="btn btn-primary" role="button" aria-pressed="true">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i> Nuovo Post</a>
+        </div>
+        {{-- ##### TABELLA ADMIN CON TUTTI I POST ##### --}}
         <table class="table">
             <thead>
                 <tr>

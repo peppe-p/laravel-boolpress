@@ -10946,3 +10946,8 @@ a.text-dark:focus {
   height: 150px;
 }
 
+.actions_bar {
+  margin: 10px;
+  padding: 10px;
+}
+
