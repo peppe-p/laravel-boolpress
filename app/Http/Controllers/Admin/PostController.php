@@ -42,7 +42,7 @@ class PostController extends Controller
             'title' => 'required | max:255',
             'author' => 'required | max:255',
             'body' => 'required | max:500',
-            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | size:1050',
+            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
             'note' => 'max:255'
         ]);
 
@@ -72,7 +72,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('admin.posts.edit', $post);
     }
 
     /**
@@ -84,7 +84,27 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required | max:255',
+            'author' => 'required | max:255',
+            'body' => 'required | max:500',
+            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
+            'note' => 'max:255'
+        ]);
+
+        /* 
+        Se "img" ovvero l'array di modifica è vuoto, ovvero falso, non fare nulla
+        se è vero, quindi nuova immagine, esegui il codice
+         */
+        if (array_key_exists('img', $validatedData)) {
+
+            Storage::disk('public')->delete($post->img);
+            $cover_img = Storage::disk('public')->put('posts/cover', $request->img);
+            $validatedData['img'] = $cover_img;
+        }
+
+        $post->update($validatedData);
+        return redirect()->route('posts.show', $post->id);
     }
 
     /**
