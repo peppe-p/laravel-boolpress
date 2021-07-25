@@ -18,8 +18,6 @@
                         <div class="btn-group-vertical">
                             <a href="{{ route('posts.index') }}" class="btn btn-primary" role="button"
                                 aria-pressed="true">Archivio Post</a>
-                            <a href="{{ route('posts.create') }}" class="btn btn-primary" role="button"
-                                aria-pressed="true">Nuovo Post</a>
                         </div>
                     </div>
                 </div>

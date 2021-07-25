@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'PageController@index')->name('index');
+Route::get('chisiamo', 'PageController@chisiamo')->name('chisiamo');
+Route::get('contattaci', 'PageController@contattaci')->name('contattaci');
 
 Auth::routes();
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function () {

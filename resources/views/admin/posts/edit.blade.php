@@ -48,7 +48,7 @@
                 <small id="AuthorHelp" class="form-text text-muted">Inserisci la firma del post</small>
             </div>
 
-            <button type="submit" class="btn btn-block btn-primary">Crea</button>
+            <button type="submit" class="btn btn-block btn-primary">Conferma modifiche</button>
 
         </form>
     </div>
