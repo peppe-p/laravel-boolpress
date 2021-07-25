@@ -9,7 +9,15 @@
             <p class="lead">Compila il form qui sotto per contattarci per qualsiasi informazione.</p>
         </div>
         {{-- FORM DI CONTATTO --}}
-        <form action="#" method="post">
+        <form action="{{ route('contacts.send') }}" method="post">
+
+            @include('partials.error')
+            @if (session('message'))
+                <div class="alert alert-success" role="alert">
+                    <strong>{{ session('message') }}</strong>
+                </div>
+            @endif
+
             @csrf
             <div class="form-group">
                 <label for="name">Nome</label>
