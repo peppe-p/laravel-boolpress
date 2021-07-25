@@ -10,15 +10,15 @@
         </div>
         {{-- FORM DI CONTATTO --}}
         <form action="{{ route('contacts.send') }}" method="post">
+            @csrf
 
-            @include('partials.error')
+            {{-- @include('partials.error')
             @if (session('message'))
                 <div class="alert alert-success" role="alert">
                     <strong>{{ session('message') }}</strong>
                 </div>
-            @endif
+            @endif --}}
 
-            @csrf
             <div class="form-group">
                 <label for="name">Nome</label>
                 <input type="text" name="name" id="name" class="form-control" placeholder="Inserisci qui il tuo nome"

@@ -34,7 +34,7 @@ class PageController extends Controller
         );
 
         // send an email with the data
-        Mail::to('golmijumla@biyac.com')
+        Mail::to('gepsozodri@biyac.com')
             ->cc($valData['email'])
             ->send(new ContactFormMail($valData));
         return redirect()->back()->with('message', 'Message sent successfully');
