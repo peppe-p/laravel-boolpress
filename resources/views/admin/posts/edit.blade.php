@@ -7,10 +7,10 @@
             <a href="{{ route('posts.index') }}" class="btn btn-primary" role="button" aria-pressed="true"><i
                     class="fa fa-chevron-left" aria-hidden="true"></i> Indietro</a>
         </div>
+        @include('partials.error')
         <form action="{{ route('posts.update', $id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            @include('error')
 
             <div class="form-group">
                 <label for="title">Titolo</label>
@@ -42,9 +42,10 @@
             </div>
 
             <div class="form-group">
-                <label for="category">Categoria</label>
-                <select class="form-control" name="category" id="category">
-                    <option> - Seleziona una categoria - </option>
+                <label for="category_id">Categoria</label>
+                <select class="form-control" name="category_id" id="category_id">
+                    <option disabled selected> - Seleziona una categoria - </option>
+                    <option value="{{ null }}">Nessuna</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach

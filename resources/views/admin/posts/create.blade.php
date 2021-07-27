@@ -42,7 +42,8 @@
             <div class="form-group">
                 <label for="category_id">Categoria</label>
                 <select class="form-control" name="category_id" id="category_id">
-                    <option> - Seleziona una categoria - </option>
+                    <option disabled selected> - Seleziona una categoria - </option>
+                    <option value="{{ null }}">Nessuna</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
