@@ -44,7 +44,7 @@ class PostController extends Controller
     {
 
         $validatedData = $request->validate([
-            'category_id' => 'nullable | exist:categories,id',
+            'category_id' => 'nullable | exists:categories,id',
             'title' => 'required | max:255',
             'author' => 'required | max:255',
             'body' => 'required | max:500',
@@ -52,16 +52,15 @@ class PostController extends Controller
             'note' => 'max:255'
         ]);
 
+
         if (in_array('img', $validatedData)) {
             // Se esiste l'immagine spostala nello spazio web dedicato all'archiviazione
             $cover_img = Storage::disk('public')->put('posts/cover', $request->img);
             $validatedData['img'] = $cover_img;
         } else {
             // se non esiste, usa l'immagine dentro l'asset e valida i dati nuovamente
-            $validatedData = Arr::add($validatedData, 'img', 'null');
-            $validatedData['img'] = asset('images/default_cover_post.jpg');
             $validatedData = $request->validate([
-                'category_id' => 'nullable | exist:categories,id',
+                'category_id' => 'nullable | exists:categories,id',
                 'title' => 'required | max:255',
                 'author' => 'required | max:255',
                 'body' => 'required | max:500',

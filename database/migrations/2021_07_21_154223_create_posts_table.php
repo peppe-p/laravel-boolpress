@@ -18,14 +18,14 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('author');
             $table->string('body', 500);
+            $table->string('img')->default(asset('images/default_cover_post.jpg'));
             $table->string('note')->nullable();
-            $table->string('img');
             $table->timestamps();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations
      *
      * @return void
      */
