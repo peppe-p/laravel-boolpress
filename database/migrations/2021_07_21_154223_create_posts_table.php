@@ -18,8 +18,8 @@ class CreatePostsTable extends Migration
             $table->string('title');
             $table->string('author');
             $table->string('body', 500);
-            $table->string('img');
             $table->string('note')->nullable();
+            $table->string('img');
             $table->timestamps();
         });
     }

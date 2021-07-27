@@ -42,6 +42,17 @@
             </div>
 
             <div class="form-group">
+                <label for="category">Categoria</label>
+                <select class="form-control" name="category" id="category">
+                    <option> - Seleziona una categoria - </option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="author">Autore</label>
                 <input type="text" class="form-control" name="author" id="author" aria-describedby="AuthorHelp"
                     maxlength="255" required value="{{ $author }}">

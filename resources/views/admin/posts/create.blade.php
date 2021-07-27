@@ -7,9 +7,9 @@
             <a href="{{ route('posts.index') }}" class="btn btn-primary" role="button" aria-pressed="true"><i
                     class="fa fa-chevron-left" aria-hidden="true"></i> Indietro</a>
         </div>
+        @include('partials.error')
         <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
             @csrf
-            @include('error')
 
             <div class="form-group">
                 <label for="title">Titolo</label>
@@ -28,7 +28,7 @@
             <div class="form-group">
                 <label for="img">Immagine di copertina</label>
                 <input type="file" class="form-control-file" name="img" id="img" placeholder="Carica la copertina del post"
-                    aria-describedby="CoverHelp">
+                    aria-describedby="CoverHelp" value="null">
                 <small id="CoverHelp" class="form-text text-muted">Max. 1 MB</small>
             </div>
 
@@ -37,6 +37,17 @@
                 <textarea class="form-control" name="note" id="note" rows="2" placeholder="Inserisci note aggiuntive"
                     maxlength="255">{{ old('title') }}</textarea>
                 <small id="NoteHelp" class="form-text text-muted">Lunghezza massima: 255 caratteri</small>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Categoria</label>
+                <select class="form-control" name="category" id="category">
+                    <option> - Seleziona una categoria - </option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+
+                </select>
             </div>
 
             <div class="form-group">

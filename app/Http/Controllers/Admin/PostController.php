@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rules\Exists;
+use Illuminate\Support\Arr;
 
 class PostController extends Controller
 {
@@ -27,7 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('admin.posts.create');
+        $categories = Category::all();
+        return view('admin.posts.create', compact('categories'));
     }
 
     /**
@@ -38,7 +42,9 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
         $validatedData = $request->validate([
+            'category_id' => 'nullable | exist:categories,id',
             'title' => 'required | max:255',
             'author' => 'required | max:255',
             'body' => 'required | max:500',
@@ -46,8 +52,23 @@ class PostController extends Controller
             'note' => 'max:255'
         ]);
 
-        $cover_img = Storage::disk('public')->put('posts/cover', $request->img);
-        $validatedData['img'] = $cover_img;
+        if (in_array('img', $validatedData)) {
+            // Se esiste l'immagine spostala nello spazio web dedicato all'archiviazione
+            $cover_img = Storage::disk('public')->put('posts/cover', $request->img);
+            $validatedData['img'] = $cover_img;
+        } else {
+            // se non esiste, usa l'immagine dentro l'asset e valida i dati nuovamente
+            $validatedData = Arr::add($validatedData, 'img', 'null');
+            $validatedData['img'] = asset('images/default_cover_post.jpg');
+            $validatedData = $request->validate([
+                'category_id' => 'nullable | exist:categories,id',
+                'title' => 'required | max:255',
+                'author' => 'required | max:255',
+                'body' => 'required | max:500',
+                'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
+                'note' => 'max:255'
+            ]);
+        }
 
         $post = Post::create($validatedData);
         return redirect()->route('posts.show', $post->id);
@@ -85,6 +106,7 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $validatedData = $request->validate([
+            'category_id' => 'nullable | exist:categories,id',
             'title' => 'required | max:255',
             'author' => 'required | max:255',
             'body' => 'required | max:500',
