@@ -52,14 +52,13 @@
             </div>
 
             <div class="form-group">
-                <label for="tags">Categoria</label>
+                <label for="tags">Tags</label>
                 <select class="form-control" name="tags[]" id="tags" multiple>
                     <option disabled selected> - Seleziona tags - </option>
                     <option value="{{ null }}">Nessuno</option>
                     @foreach ($tags as $tag)
                         <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                     @endforeach
-
                 </select>
             </div>
 

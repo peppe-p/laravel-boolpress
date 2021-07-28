@@ -54,6 +54,17 @@
             </div>
 
             <div class="form-group">
+                <label for="tags">Tags</label>
+                <select class="form-control" name="tags[]" id="tags" multiple>
+                    <option disabled selected> - Seleziona tags - </option>
+                    <option value="{{ null }}">Nessuno</option>
+                    @foreach ($tags as $tag)
+                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="author">Autore</label>
                 <input type="text" class="form-control" name="author" id="author" aria-describedby="AuthorHelp"
                     maxlength="255" required value="{{ $author }}">

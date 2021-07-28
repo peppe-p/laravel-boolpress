@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Category;
 use App\Http\Controllers\Controller;
 use App\Post;
+use App\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Exists;
@@ -31,7 +32,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('admin.posts.create', compact('categories'));
+        $tags = Tag::all();
+        return view('admin.posts.create', compact('categories', 'tags'));
     }
 
     /**
@@ -49,9 +51,11 @@ class PostController extends Controller
             'author' => 'required | max:255',
             'body' => 'required | max:500',
             'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
-            'note' => 'max:255'
+            'note' => 'max:255',
+            'tags' => 'nullable | exists:tags,id',
         ]);
 
+        //ddd($validatedData);
 
         if (in_array('img', $validatedData)) {
             // Se esiste l'immagine spostala nello spazio web dedicato all'archiviazione
@@ -65,11 +69,13 @@ class PostController extends Controller
                 'author' => 'required | max:255',
                 'body' => 'required | max:500',
                 'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
-                'note' => 'max:255'
+                'note' => 'max:255',
+                'tags' => 'nullable | exists:tags,id',
             ]);
         }
 
         $post = Post::create($validatedData);
+        $post->tags()->attach($validatedData['tags']);
         return redirect()->route('posts.show', $post->id);
     }
 
@@ -93,7 +99,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        return view('admin.posts.edit', $post, compact('categories'));
+        $tags = Tag::all();
+        return view('admin.posts.edit', $post, compact('categories', 'tags'));
     }
 
     /**
@@ -111,7 +118,8 @@ class PostController extends Controller
             'author' => 'required | max:255',
             'body' => 'required | max:500',
             'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
-            'note' => 'max:255'
+            'note' => 'max:255',
+            'tags' => 'nullable | exists:tags,id',
         ]);
 
         /* 
@@ -126,6 +134,7 @@ class PostController extends Controller
         }
 
         $post->update($validatedData);
+        $post->tags()->attach($validatedData['tags']);
         return redirect()->route('posts.show', $post->id);
     }
 
