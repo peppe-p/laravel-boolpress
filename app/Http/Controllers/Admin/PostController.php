@@ -134,7 +134,7 @@ class PostController extends Controller
         }
 
         $post->update($validatedData);
-        $post->tags()->attach($validatedData['tags']);
+        $post->tags()->sync($validatedData['tags']);
         return redirect()->route('posts.show', $post->id);
     }
 

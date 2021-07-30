@@ -61,7 +61,7 @@
                     <option disabled> - Seleziona tags - </option>
                     <option value="{{ null }}">Nessuno</option>
                     @foreach ($tags as $tag)
-                        <option value="{{ $tag->id }}" {{ $tag->id == old('tags', $post->tag) ? 'selected' : '' }}>
+                        <option value="{{ $tag->id }}" {{ $post->tags->contains($tag->id) ? 'selected' : '' }}>
                             {{ $tag->name }}
                         </option>
                     @endforeach
