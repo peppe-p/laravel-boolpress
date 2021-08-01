@@ -17,7 +17,13 @@ Route::get('/', 'PageController@index')->name('index');
 Route::get('chisiamo', 'PageController@chisiamo')->name('chisiamo');
 Route::get('contattaci', 'PageController@contattaci')->name('contattaci');
 
+/* Route per invio form */
 Route::post('contacts', 'PageController@sendForm')->name('contacts.send');
+
+/* Route per vue */
+Route::get('vue-posts', function () {
+    return view('vue-posts');
+});
 
 Auth::routes();
 Route::prefix('admin')->namespace('Admin')->middleware('auth')->group(function () {

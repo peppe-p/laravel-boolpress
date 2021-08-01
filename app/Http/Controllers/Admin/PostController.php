@@ -50,12 +50,12 @@ class PostController extends Controller
             'title' => 'required | max:255',
             'author' => 'required | max:255',
             'body' => 'required | max:500',
-            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
+            'img' => 'image | max:1050',
             'note' => 'max:255',
             'tags' => 'nullable | exists:tags,id',
         ]);
 
-        //ddd($validatedData);
+        ddd($validatedData);
 
         if (in_array('img', $validatedData)) {
             // Se esiste l'immagine spostala nello spazio web dedicato all'archiviazione
@@ -63,15 +63,7 @@ class PostController extends Controller
             $validatedData['img'] = $cover_img;
         } else {
             // se non esiste, usa l'immagine dentro l'asset e valida i dati nuovamente
-            $validatedData = $request->validate([
-                'category_id' => 'nullable | exists:categories,id',
-                'title' => 'required | max:255',
-                'author' => 'required | max:255',
-                'body' => 'required | max:500',
-                'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
-                'note' => 'max:255',
-                'tags' => 'nullable | exists:tags,id',
-            ]);
+
         }
 
         $post = Post::create($validatedData);
@@ -117,7 +109,7 @@ class PostController extends Controller
             'title' => 'required | max:255',
             'author' => 'required | max:255',
             'body' => 'required | max:500',
-            'img' => 'mimes:jpg,jpeg,png,bmp,gif,svg,webp,JPG,JPEG,PNG,BMP,GIF,SVG,WEBP | max:1050',
+            'img' => 'image | max:1050',
             'note' => 'max:255',
             'tags' => 'nullable | exists:tags,id',
         ]);
