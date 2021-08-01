@@ -4,6 +4,8 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
+const { default: axios } = require('axios');
+
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -29,4 +31,20 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    data: {
+        posts: null,
+    },
+    mounted() {
+
+        /* Chiamata API con AXIOS */
+        axios
+            .get('api/posts')
+            .then(dati => {
+                this.posts = dati.data
+                //console.log(dati);
+            })
+            .catch(error => {
+                console.error(error);
+            })
+    }
 });
